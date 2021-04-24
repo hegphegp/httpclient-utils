@@ -32,8 +32,12 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HttpClientUtils {
+
+	private static final Logger logger = LoggerFactory.getLogger(HttpClientUtils.class);
 
 	/**
 	new HttpConfig(client, HttpMethod.GET, url)
@@ -279,17 +283,18 @@ public class HttpClientUtils {
 
 	/**
 	 * 请求资源或服务，返回HttpResult对象
-	 * @param config		请求参数配置
-	 * @return				返回HttpResult处理结果
+	 * @param config    请求参数配置
+	 * @return        返回HttpResult处理结果
 	 */
 	public static HttpResult sendAndGetResp(HttpConfig config) {
-		HttpResponse resp =  execute(config);  // 执行结果
+		HttpResponse resp = execute(config);  // 执行结果
 		HttpResult result = new HttpResult(resp);
 		boolean isBinaryResp = isBinaryResp(resp);
 		if (isBinaryResp) {
 			result.setBinary(true);
 			result.setBody(fmt2Byte(resp));
 		} else {
+			checkStatusCode(resp, config);
 			result.setResult(fmt2String(resp, config.getOutenc()));
 		}
 		result.setReqHeaders(config.getHeaders());
@@ -373,10 +378,19 @@ public class HttpClientUtils {
 		}
 	}
 
+	public static void checkStatusCode(HttpResponse resp, HttpConfig config) {
+		int statusCode = resp.getStatusLine().getStatusCode();
+		if (statusCode>=400) {
+			String errMsg = "\n"+config.getMethod().name()+" "+config.getUrl()+" 的httpStatusCode是 "+statusCode+"，响应内容是 "+fmt2String(resp, config.getOutenc())+ "\n\n";
+			logger.error(errMsg);
+			throw new RuntimeException(errMsg);
+		}
+	}
+
 	public static void checkDownloadStatusCode(HttpResponse resp, HttpConfig config) {
 		int statusCode = resp.getStatusLine().getStatusCode();
 		if (statusCode!=200 && statusCode!=206) {
-			String errMsg = "\n"+config.getUrl()+" 状态码是"+statusCode+"\n\n"+fmt2String(resp, config.getOutenc());
+			String errMsg = "\n"+config.getMethod().name()+" "+config.getUrl()+" 状态码是"+statusCode+"\n\n"+fmt2String(resp, config.getOutenc());
 			throw new RuntimeException(errMsg);
 		}
 	}
