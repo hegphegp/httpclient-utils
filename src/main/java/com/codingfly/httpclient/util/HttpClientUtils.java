@@ -7,6 +7,7 @@ import java.util.*;
 import com.codingfly.httpclient.model.HttpConfig;
 import com.codingfly.httpclient.model.HttpMethod;
 import com.codingfly.httpclient.model.HttpResult;
+import com.gargoylesoftware.htmlunit.javascript.host.media.StereoPannerNode;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
@@ -557,5 +558,22 @@ public class HttpClientUtils {
 		}
 		return map;
 	}
+
+	public static Header[] toHeaderArr(Map<String, String> map) {
+		List<Header> headers = toHeaderList(map);
+		return headers.toArray(new Header[]{});
+	}
+
+	public static List<Header> toHeaderList(Map<String, String> map) {
+		List<Header> headers = new ArrayList<>();
+		for (String key:map.keySet()) {
+			if (key!=null && key.equals("")==false) {
+				headers.add(new BasicHeader(key, map.get(key)));
+			}
+		}
+		return headers;
+	}
+
+
 
 }
