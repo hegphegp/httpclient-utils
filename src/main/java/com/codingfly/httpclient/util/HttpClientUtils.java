@@ -7,7 +7,6 @@ import java.util.*;
 import com.codingfly.httpclient.model.HttpConfig;
 import com.codingfly.httpclient.model.HttpMethod;
 import com.codingfly.httpclient.model.HttpResult;
-import com.gargoylesoftware.htmlunit.javascript.host.media.StereoPannerNode;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
@@ -36,36 +35,119 @@ import org.apache.http.util.EntityUtils;
 
 public class HttpClientUtils {
 
+	/**
+	new HttpConfig(client, HttpMethod.GET, url)
+		.setUrlParams(urlParams)
+		.setBodyParams(bodyParams)
+		.setHeaders(headers)
+		.setInenc(inenc)
+		.setOutenc(outenc)
+		.setConnectionRequestTimeout(10000)
+		.setConnectTimeout(10000)
+		.setSocketTimeout(24*3600*1000);
+	*/
 	public static HttpResult get(HttpConfig config) {
 		config.setMethod(HttpMethod.GET);
 		return sendAndGetResp(config);
 	}
 
+
+	/**
+	 new HttpConfig(client, HttpMethod.POST, url)
+		 .setUrlParams(urlParams)
+		 .setBodyParams(bodyParams)
+		 .setHeaders(headers)
+		 .setInenc(inenc)
+		 .setOutenc(outenc)
+		 .setConnectionRequestTimeout(10000)
+		 .setConnectTimeout(10000)
+		 .setSocketTimeout(24*3600*1000);
+	 */
 	public static HttpResult post(HttpConfig config) {
 		config.setMethod(HttpMethod.POST);
 		return sendAndGetResp(config);
 	}
 
+
+	/**
+	 new HttpConfig(client, HttpMethod.PUT, url)
+		 .setUrlParams(urlParams)
+		 .setBodyParams(bodyParams)
+		 .setHeaders(headers)
+		 .setInenc(inenc)
+		 .setOutenc(outenc)
+		 .setConnectionRequestTimeout(10000)
+		 .setConnectTimeout(10000)
+		 .setSocketTimeout(24*3600*1000);
+	 */
 	public static HttpResult put(HttpConfig config) {
 		config.setMethod(HttpMethod.PUT);
 		return sendAndGetResp(config);
 	}
 
+
+	/**
+	 new HttpConfig(client, HttpMethod.DELETE, url)
+		 .setUrlParams(urlParams)
+		 .setBodyParams(bodyParams)
+		 .setHeaders(headers)
+		 .setInenc(inenc)
+		 .setOutenc(outenc)
+		 .setConnectionRequestTimeout(10000)
+		 .setConnectTimeout(10000)
+		 .setSocketTimeout(24*3600*1000);
+	 */
 	public static HttpResult delete(HttpConfig config) {
 		config.setMethod(HttpMethod.DELETE);
 		return sendAndGetResp(config);
 	}
 
+
+	/**
+	 new HttpConfig(client, HttpMethod.PATCH, url)
+		 .setUrlParams(urlParams)
+		 .setBodyParams(bodyParams)
+		 .setHeaders(headers)
+		 .setInenc(inenc)
+		 .setOutenc(outenc)
+		 .setConnectionRequestTimeout(10000)
+		 .setConnectTimeout(10000)
+		 .setSocketTimeout(24*3600*1000);
+	 */
 	public static HttpResult patch(HttpConfig config) {
 		config.setMethod(HttpMethod.PATCH);
 		return sendAndGetResp(config);
 	}
 
+
+	/**
+	 new HttpConfig(client, HttpMethod.HEAD, url)
+		 .setUrlParams(urlParams)
+		 .setBodyParams(bodyParams)
+		 .setHeaders(headers)
+		 .setInenc(inenc)
+		 .setOutenc(outenc)
+		 .setConnectionRequestTimeout(10000)
+		 .setConnectTimeout(10000)
+		 .setSocketTimeout(24*3600*1000);
+	 */
 	public static HttpResult head(HttpConfig config) {
 		config.setMethod(HttpMethod.HEAD);
 		return sendAndGetResp(config);
 	}
 
+
+	/**
+	 new HttpConfig(client, HttpMethod.TRACE, url)
+		 .setUrlParams(urlParams)
+		 .setBodyParams(bodyParams)
+		 .setHeaders(headers)
+		 .setInenc(inenc)
+		 .setOutenc(outenc)
+		 .setConnectionRequestTimeout(10000)
+		 .setConnectTimeout(10000)
+		 .setSocketTimeout(24*3600*1000);
+	 */
 	public static HttpResult trace(HttpConfig config) {
 		config.setMethod(HttpMethod.TRACE);
 		return sendAndGetResp(config);

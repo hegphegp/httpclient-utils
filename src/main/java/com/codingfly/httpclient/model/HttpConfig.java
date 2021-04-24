@@ -36,6 +36,27 @@ public class HttpConfig {
      */
     public HttpConfig() { }
 
+    /**
+     new HttpConfig(client, HttpMethod.PUT, url)
+             .setUrlParams(urlParams)
+             .setBodyParams(bodyParams)
+             .setHeaders(headers)
+             .setInenc(inenc)
+             .setOutenc(outenc)
+             .setConnectionRequestTimeout(10000)
+             .setConnectTimeout(10000)
+             .setSocketTimeout(24*3600*1000);
+     */
+    public HttpConfig(HttpClient client, HttpMethod method, String url) {
+        this.client = client;
+        this.url = url;
+        this.method = method;
+    }
+
+    public HttpConfig(HttpMethod method) {
+        this.method = method;
+    }
+
     public HttpClient getClient() {
         return client;
     }
