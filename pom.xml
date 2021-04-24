@@ -43,6 +43,16 @@
       <version>${jsoup.version}</version>
     </dependency>
     <dependency>
+      <groupId>com.github.hazendaz</groupId>
+      <artifactId>htmlcompressor</artifactId>
+      <version>1.7.1</version>
+    </dependency>
+    <dependency>
+      <groupId>net.alchim31.maven</groupId>
+      <artifactId>yuicompressor-maven-plugin</artifactId>
+      <version>1.5.1</version>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
